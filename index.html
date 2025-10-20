@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>بطاقة الطالب القديمة — تجربة تذكارية</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app" id="app">
+    <!-- Screen A: Welcome -->
+    <div id="welcome-screen">
+      <img src="assets/logo.png" alt="Logo" class="logo" style="height:60px; display:block; margin:0 auto 20px;">
+      <h1>بطاقة الطالب القديمة — تجربة تذكارية</h1>
+      <p>أنشئ بطاقة طالب قديمة مخصصة واطبعها فوراً!</p>
+      <button class="btn primary" id="start-btn">ابدأ</button>
+    </div>
+
+    <!-- Screen B: Input Form -->
+    <div id="form-screen" style="display:none;">
+      <h2>أدخل بياناتك</h2>
+      <form id="card-form">
+        <div class="field">
+          <label for="name">الاسم / Your Name *</label>
+          <input type="text" id="name" maxlength="40" required placeholder="أدخل اسمك / Enter your name">
+        </div>
+        <div class="field">
+          <label for="school">المدرسة / School *</label>
+          <select id="school" required>
+            <option value="">اختر مدرسة / Choose a school</option>
+            <option value="Al-Jahra Primary">Al-Jahra Primary</option>
+            <option value="Jahra Secondary School">Jahra Secondary School</option>
+            <option value="Old Boys School">Old Boys School</option>
+            <option value="Central Technical School">Central Technical School</option>
+            <option value="Girls School of Jahra">Girls School of Jahra</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="memo">سطر تذكار (اختياري) / Short Memory Line (optional)</label>
+          <input type="text" id="memo" maxlength="30" placeholder="اكتب ذكرى قصيرة / Write a short memory">
+        </div>
+        <div class="field">
+          <label for="email">البريد الإلكتروني (اختياري) / Email (optional)</label>
+          <input type="email" id="email" placeholder="لتلقي نسخة رقمية / For digital copy">
+        </div>
+        <div class="actions">
+          <button type="button" class="btn primary" id="preview-btn">معاينة البطاقة / Preview Card</button>
+          <button type="button" class="btn secondary" id="clear-btn">مسح / Clear</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Screen C: Preview -->
+    <div id="preview-screen" style="display:none;">
+      <h2>معاينة البطاقة / Card Preview</h2>
+      <div class="preview-area">
+        <div class="print-card" id="card">
+          <img src="assets/logo.png" alt="Logo" class="card-logo">
+          <div class="card-content">
+            <div class="name" id="card-name">NAME</div>
+            <div class="school" id="card-school">School</div>
+            <div class="id" id="card-id">ID: --</div>
+            <div class="memo" id="card-memo"></div>
+          </div>
+          <img src="assets/seal.png" alt="Seal" class="card-seal">
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn primary" id="print-btn">طباعة / Print</button>
+        <button class="btn secondary" id="email-btn" style="display:none;">إرسال بالبريد / Send by Email</button>
+        <button class="btn secondary" id="edit-btn">تعديل / Edit</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
