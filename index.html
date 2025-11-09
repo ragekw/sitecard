@@ -10,7 +10,7 @@
   <div class="app" id="app">
     <!-- Screen A: Welcome -->
     <div id="welcome-screen">
-      <img src="assets/logo.png" alt="Logo" class="logo" style="height:60px; display:block; margin:0 auto 20px;">
+      <img src="assets/icon.png" alt="Logo" class="logo" style="height:60px; display:block; margin:0 auto 20px;">
       <h1>بطاقة الطالب القديمة — تجربة تذكارية</h1>
       <p>أنشئ بطاقة طالب قديمة مخصصة واطبعها فوراً!</p>
       <button class="btn primary" id="start-btn">ابدأ</button>
@@ -36,12 +36,16 @@
           </select>
         </div>
         <div class="field">
-          <label for="memo">سطر تذكار (اختياري) / Short Memory Line (optional)</label>
-          <input type="text" id="memo" maxlength="30" placeholder="اكتب ذكرى قصيرة / Write a short memory">
+          <label for="grade">الصف / Grade *</label>
+          <input type="text" id="grade" maxlength="20" required placeholder="مثال: متوسطة ٣ / Example: Grade 8">
         </div>
         <div class="field">
-          <label for="email">البريد الإلكتروني (اختياري) / Email (optional)</label>
-          <input type="email" id="email" placeholder="لتلقي نسخة رقمية / For digital copy">
+          <label for="age">السن / Age *</label>
+          <input type="number" id="age" min="5" max="100" required placeholder="أدخل العمر / Enter age">
+        </div>
+        <div class="field">
+          <label for="memo">سطر تذكار (اختياري) / Short Memory Line (optional)</label>
+          <input type="text" id="memo" maxlength="30" placeholder="اكتب ذكرى قصيرة / Write a short memory">
         </div>
         <div class="actions">
           <button type="button" class="btn primary" id="preview-btn">معاينة البطاقة / Preview Card</button>
@@ -55,19 +59,52 @@
       <h2>معاينة البطاقة / Card Preview</h2>
       <div class="preview-area">
         <div class="print-card" id="card">
-          <img src="assets/logo.png" alt="Logo" class="card-logo">
-          <div class="card-content">
-            <div class="name" id="card-name">NAME</div>
-            <div class="school" id="card-school">School</div>
-            <div class="id" id="card-id">ID: --</div>
-            <div class="memo" id="card-memo"></div>
+          <!-- Left Column: Photo Section -->
+          <div class="card-left">
+            <div class="photo-placeholder"></div>
+            <img src="assets/seal.png" alt="Seal" class="card-seal">
           </div>
-          <img src="assets/seal.png" alt="Seal" class="card-seal">
+
+          <!-- Right Column: Information Section -->
+          <div class="card-right">
+            <div class="card-field">
+              <span class="field-label">اسم الطالب:</span>
+              <span class="field-value" id="card-name">________________</span>
+            </div>
+
+            <div class="card-field">
+              <span class="field-label">المدرسة:</span>
+              <span class="field-value" id="card-school">________________</span>
+            </div>
+
+            <div class="card-field">
+              <span class="field-label">الصف:</span>
+              <span class="field-value" id="card-grade">________________</span>
+            </div>
+
+            <div class="card-field">
+              <span class="field-label">السن:</span>
+              <span class="field-value" id="card-age">____</span>
+              <span class="field-label">سنة</span>
+            </div>
+
+            <div class="card-footer">
+              <div class="footer-field">
+                <span class="field-label">مدير المدرسة</span>
+              </div>
+              <div class="footer-field">
+                <span class="field-label">ناظر المدرسة</span>
+              </div>
+              <div class="card-field">
+                <span class="field-label">رقم البطاقة:</span>
+                <span class="field-value small" id="card-id">________</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="actions">
         <button class="btn primary" id="print-btn">طباعة / Print</button>
-        <button class="btn secondary" id="email-btn" style="display:none;">إرسال بالبريد / Send by Email</button>
         <button class="btn secondary" id="edit-btn">تعديل / Edit</button>
       </div>
     </div>

@@ -13,8 +13,9 @@ const startBtn = document.getElementById('start-btn');
 // Card elements
 const cardName = document.getElementById('card-name');
 const cardSchool = document.getElementById('card-school');
+const cardGrade = document.getElementById('card-grade');
+const cardAge = document.getElementById('card-age');
 const cardId = document.getElementById('card-id');
-const cardMemo = document.getElementById('card-memo');
 
 // Event listeners
 startBtn.addEventListener('click', () => {
@@ -26,25 +27,20 @@ previewBtn.addEventListener('click', () => {
   const formData = new FormData(cardForm);
   const name = document.getElementById('name').value.trim();
   const school = document.getElementById('school').value;
-  const memo = document.getElementById('memo').value.trim();
-  const email = document.getElementById('email').value.trim();
+  const grade = document.getElementById('grade').value.trim();
+  const age = document.getElementById('age').value.trim();
 
-  if (!name || !school) {
-    alert('يرجى إدخال الاسم واختيار المدرسة / Please enter name and choose a school.');
+  if (!name || !school || !grade || !age) {
+    alert('يرجى إدخال جميع الحقول المطلوبة / Please enter all required fields.');
     return;
   }
 
   // Populate preview
   cardName.textContent = name;
   cardSchool.textContent = school;
-  cardId.textContent = 'ID: ' + generateId();
-  cardMemo.textContent = memo;
-
-  if (email) {
-    emailBtn.style.display = 'inline-block';
-  } else {
-    emailBtn.style.display = 'none';
-  }
+  cardGrade.textContent = grade;
+  cardAge.textContent = age;
+  cardId.textContent = generateId();
 
   formScreen.style.display = 'none';
   previewScreen.style.display = 'block';
@@ -60,15 +56,6 @@ printBtn.addEventListener('click', () => {
 
   // Optional: Log to localStorage
   logCard();
-});
-
-emailBtn.addEventListener('click', () => {
-  // For now, manual: prompt to download PDF and attach
-  generatePDF().then(url => {
-    const email = document.getElementById('email').value;
-    alert(`PDF generated. Manually attach ${url} to email and send to ${email}.`);
-    window.open(url);
-  });
 });
 
 editBtn.addEventListener('click', () => {
@@ -88,8 +75,9 @@ function logCard() {
   const cardData = {
     name: cardName.textContent,
     school: cardSchool.textContent,
-    id: cardId.textContent.replace('ID: ', ''),
-    memo: cardMemo.textContent,
+    grade: cardGrade.textContent,
+    age: cardAge.textContent,
+    id: cardId.textContent,
     timestamp: new Date().toISOString()
   };
   cards.push(cardData);
